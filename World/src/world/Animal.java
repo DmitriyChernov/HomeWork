@@ -3,5 +3,7 @@ package world;
 
 public abstract class Animal
 {
-    public abstract String Animal (String s);
+    public  enum Creature
+    {Sparrow, Cat, Dog}
+    public abstract String getReaction (String creature);
 }
