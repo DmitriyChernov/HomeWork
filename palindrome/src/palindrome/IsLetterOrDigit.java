@@ -1,3 +1,8 @@
+/*
+ *Chernov Dmitriy
+ * 271 group
+ */
+
 package palindrome;
 
 public class IsLetterOrDigit 

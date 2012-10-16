@@ -2,12 +2,21 @@ package coins;
 
 class Combinations 
 {
-    private int len=0;
-    private int head;
+    private int []c;
+    private int len;
     
-    int numberCombinations(int n, int []c)
+    public Combinations(int []c) throws IllegalArgumentException
     {
+        if (c==null)
+        {
+            System.out.println("Массив не инициализирован");
+            throw new IllegalArgumentException();
+        }
+        this.c = c.clone();
         len=c.length;
+    }
+    int numberCombinations(int step, int n, int []c) 
+    {
         if (n==0)
         {
             return 1;
@@ -16,15 +25,13 @@ class Combinations
         {
             return 0;
         }
-        else if (len==0)
+        else if (len==step)
         {
             return 0;
         }
         else 
         {
-            int []b = null;
-            System.arraycopy(c, 2, b, 1, len-1);
-            return numberCombinations(n, b)+ numberCombinations(n-c[1], c);
+            return numberCombinations(step+1, n, c)+ numberCombinations(step ,n-c[step], c);
         }
     }
 }

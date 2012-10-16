@@ -1,3 +1,6 @@
+/*Chernov Dmitriy
+ * 271 group
+ */
 package robot;
 
 public class FactorialUtil

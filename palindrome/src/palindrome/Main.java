@@ -1,5 +1,6 @@
 /*
- * Palindrome
+ *Chernov Dmitriy
+ * 271 group
  */
 
 package palindrome;

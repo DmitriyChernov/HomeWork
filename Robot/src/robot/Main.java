@@ -1,3 +1,6 @@
+/*Chernov Dmitriy
+ * 271 group
+ */
 package robot;
 
 import java.io.BufferedReader;

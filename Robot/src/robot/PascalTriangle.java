@@ -1,8 +1,15 @@
+/*Chernov Dmitriy
+ * 271 group
+ */
 package robot;
+
+import java.security.InvalidParameterException;
+
 public class PascalTriangle
 {
-    public static int Combination(int x, int y)
+    public static int Combination(int x, int y) throws InvalidParameterException
     {
+        if (x<0 || y<0) throw new InvalidParameterException ("Координаты положительны!");
         FactorialUtil fact;
         fact = new FactorialUtil();
         if (x>y)
