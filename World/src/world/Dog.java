@@ -11,6 +11,7 @@ public class Dog extends Mammal
     {
         Random randomGenerator = new Random();
         String reaction = "Спокойствие";
+        StoryTeller author = new StoryTeller();
         switch (opponent) {
             case "Кошка":
                 reaction="Гавканье";
@@ -19,19 +20,19 @@ public class Dog extends Mammal
                 if (fightSuccess)
                 {
                     emotion=mammalEmotion.Happy;
-                    System.out.println("Собака победила кошку. Она празднует победу");
+                    author.TellStory("Собака победила кошку. Она празднует победу");
                 }
                 else
                 {
                     emotion=mammalEmotion.Scared;
-                    System.out.println("Собаке нанесли поражение. Она испуганно убегает");
+                    author.TellStory("Собаке нанесли поражение. Она испуганно убегает");
                 }
                 break;
             case "Воробей":
-                reaction="Обнюхать";
-                emotion=mammalEmotion.Interested;
-                System.out.println("Собака заинтересована птичкой. Чем же ответит воробей?");
                 Sparrow sparrow = new Sparrow();
+                reaction="Обнюхать";
+                emotion=mammalEmotion.Interested;            
+                author.TellStory("Собака заинтересована птичкой. Чем же ответит воробей?");
                 sparrow.getReaction("Dog");
         }
         return reaction;

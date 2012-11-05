@@ -10,28 +10,29 @@ public class Sparrow extends Bird
     public String getReaction (String opponent) 
     {
         String reaction = "Спокойствие";
+        StoryTeller author = new StoryTeller();
         switch (opponent) {
             case "Кошка":
+                Cat cat = new Cat();
                 reaction="Убежать";
                 emotion=birdEmotion.Scared;
-                System.out.println("Воробей напуган. Он в спешке убегает от кошки");
-                Cat cat = new Cat();
+                author.TellStory("Воробей напуган. Он в спешке убегает от кошки");
                 cat.getReaction("Sparrow");
                 break;
             case "Собака":
                 reaction="Осмотреть";
                 emotion=birdEmotion.Interested;
-                System.out.println("Воробей заинтересован собакой. Как же она к нему отнесется?");
+                author.TellStory("Воробей заинтересован собакой. Как же она к нему отнесется?");
                 Random randomGenerator = new Random();
                 boolean dogLoveBirds = randomGenerator.nextBoolean();
                 if (dogLoveBirds)
                 {
+                    author.TellStory("Воробей обрадован встречей с дружелюбной собакой");
                     emotion=Bird.birdEmotion.Happy;
-                    System.out.println("Воробей обрадован встречей с дружелюбной собакой");
                 }
                 else
                 {
-                    System.out.println("Воробей напуган голодной собакой. Он в спешке убегает от собаки");
+                    author.TellStory("Воробей напуган голодной собакой. Он в спешке убегает от собаки");
                     emotion=Bird.birdEmotion.Scared;
                 }
                 break;

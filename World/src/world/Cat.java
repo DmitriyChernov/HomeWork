@@ -11,29 +11,31 @@ public class Cat extends Mammal
     public String getReaction (String opponent)
     {
         String reaction = "Спокойствие";
-        switch (opponent) {
+        StoryTeller author = new StoryTeller();
+        switch (opponent) 
+        {
             case "Собака":
+                Dog dog = new Dog();
                 reaction="Шипение";
                 emotion=mammalEmotion.Agressive;
-                System.out.println("Кошка агрессивно настроена и шипит чтобы отпугнуть собаку");
-                Dog dog = new Dog();
+                author.TellStory("Кошка агрессивно настроена и шипит чтобы отпугнуть собаку");
                 dog.getReaction("Cat");
                 break;
             case "Воробей":
                 reaction="Атака";
                 emotion=mammalEmotion.Agressive;
-                System.out.println("Кошка агрессивно настроена и хочет сцапать воробья");
+                author.TellStory("Кошка агрессивно настроена и хочет сцапать воробья");
                 Random randomGenerator = new Random();
-                boolean success = randomGenerator.nextBoolean();
-                if (success)
+                boolean dinnerSuccess = randomGenerator.nextBoolean();
+                if (dinnerSuccess)
                 {
                     emotion=mammalEmotion.Fed;
-                    System.out.println("Кошка поймала воробья и сьела. Она сыта");
+                    author.TellStory("Кошка поймала воробья и сьела. Она сыта");
                 }
                 else
                 {
                     emotion=mammalEmotion.Hungry;
-                    System.out.println("Кошка не поймала воробья. Она огорчена и голодна");
+                    author.TellStory("Кошка не поймала воробья. Она огорчена и голодна");
                 }
                 break;
         }
