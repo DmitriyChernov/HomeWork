@@ -7,17 +7,21 @@ package hashtable;
 public class TableElem 
 {
     protected String key;
-    protected int count;
-    public TableElem (String k, int c) 
+    protected Object data;
+    public TableElem (String key, Object data) 
     {
-        key = k; count = c;
+        this.key=key; this.data=data;
     }
-    public String getStr() 
+    public String getKey() 
     {
         return key;
     }
-    public int getValue() 
+    public Object getData() 
     {
-        return count;
+        return data;
     } 
+    public void setData(Object d) 
+    {
+        data = d;
+    }
 }
