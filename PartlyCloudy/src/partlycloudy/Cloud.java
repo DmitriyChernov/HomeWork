@@ -87,7 +87,6 @@ public class Cloud
                 case PIGLET:
                 case KITTEN:
                 case BEARCUB:
-                    System.out.print("ХУЙ");
                     magic.callStork(creature.getCreatureType());
                     break;
                 case MOUSEKIN:
