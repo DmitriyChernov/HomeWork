@@ -5,40 +5,11 @@
 
 package palindrome;
 
-public class CaseSensetivePalindrome extends Palindrome {
+public class CaseSensetivePalindrome extends Palindrome 
+{
     @Override
-    public boolean isPalindrome(String s)
+    public boolean compare(char a, char b)
     {
-        if (s == null) {
-            throw new IllegalArgumentException("Строка не инициализирована");
-        }
-        int i, left=0;
-        int right = s.length()-1;
-        IsLetterOrDigit p = new IsLetterOrDigit();
-        while (left<right)
-        {
-            while (!p.isLetterorDigit(s.charAt(left)))
-            {
-                    left++;
-                    if (left>right)
-                    {
-                        return true;
-                    }
-            }
-
-            while (!p.isLetterorDigit(s.charAt(right)))
-            {
-                    right--;
-            }
-
-            if (s.charAt(left) != s.charAt(right))
-            {
-                    return false;
-            }
-            left++;
-            right--;
-        }
-        return true;
+         return (a != b);
     }
-    
 }
