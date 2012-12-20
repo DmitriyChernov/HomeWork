@@ -3,14 +3,13 @@ package calc;
 
 public enum LexemType 
 {
-    NOTHING, 
+    EOL, 
     PLUS, 
     MINUS, 
     MULT, 
     DIV, 
     OBRACE, 
     CBRACE,  
-    ERR, 
     NUM,
     VAR,
     EQ;

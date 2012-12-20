@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class HashTable 
+public class HashTable <T>
 {
     private int size;
     private List<List<TableElem>> table = new ArrayList<>();
@@ -30,7 +30,7 @@ public class HashTable
         return Integer.parseInt(Long.toString(Math.abs(hash % size)));
     }
     
-    public void put(String key, Object data) 
+    public void put(String key, T data) 
     {
         if (key != null) 
         {

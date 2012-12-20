@@ -3,17 +3,17 @@
  * 271 group
  */
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import hashtable.*;
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 
 public class TextInHashTable 
 {
     int size = 500;
     int NumWords = 0;
-    HashTable ht = new HashTable (size);
+    HashTable<Integer> ht = new HashTable (size);
     
     public void put(String key) 
     {

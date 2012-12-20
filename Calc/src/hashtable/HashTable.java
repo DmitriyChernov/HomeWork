@@ -4,39 +4,40 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class HashTable 
+public class HashTable <T>
 {
     private int size;
     private List<List<TableElem>> table = new ArrayList<>();
     
-    public HashTable(int _size) 
+    public HashTable(int size) 
     {
-        size = _size;
+        this.size=size;
         for (int i = 0; i < size; i++) 
         {
             table.add(new ArrayList<TableElem>());
         }
     }
-    //sdbm hash function
+    
+    //djb2 & sdbm hash functions
     private int hashfunc (String s)
-    {
+    {  
         long hash = 0;
         int len = s.length();
         for(int i = 0; i < len; i++)
         {
-            hash = i + (hash << 6) + (hash << 16) - hash;
+            hash = s.charAt(i) + (hash << 6) + (hash << 16) - hash;
         }
         return Integer.parseInt(Long.toString(Math.abs(hash % size)));
     }
     
-    public void put(String key, int elem) 
+    public void put(String key, T data) 
     {
         if (key != null) 
         {
-           int hash = hashfunc(key); 
-           List<TableElem> list;
-           list = table.get(hash);
-           list.add(new TableElem(key, elem));
+            int hash = hashfunc(key); 
+            List<TableElem> list;
+            list = table.get(hash);
+            list.add(new TableElem(key, data));
         }
     }
 
@@ -44,6 +45,7 @@ public class HashTable
     {
         if (key != null) 
         {
+           key = key.toLowerCase();
            int hash = hashfunc(key); 
            List<TableElem> list;
            list = table.get(hash);
@@ -89,17 +91,19 @@ public class HashTable
            }
         }
     }
-            
+    
     public boolean isInTable (String key)
     {
        if (key != null)
        {
+           key = key.toLowerCase();
            int hash = hashfunc(key);
            if(table.get(hash).isEmpty())
            {
                return false;
            }
-           else{
+           else
+           {
               List<TableElem> list = table.get(hash); 
               for(TableElem elem:list)
               {
@@ -112,5 +116,42 @@ public class HashTable
            }
        }
        return false;
+    }
+    
+    public void showStatistic()
+    {
+        int min = Integer.MAX_VALUE, max = 0, numwords = 0, n = 0;
+        double stand_dev = 0.0f, avdev = 0.0f;
+        List<Integer> dev = new ArrayList<>(size);
+        for(List<TableElem> list : table) 
+        {
+            for(TableElem elem : list) 
+            {
+                n ++;
+            }
+            numwords += n;
+            dev.add(n);
+            if (n > max) 
+            {
+                max = n;
+            }
+            if (n < min) 
+            {
+                min = n;
+            }
+            n = 0;
+        }
+        for(Integer i : dev) 
+        {
+            avdev += i - numwords/size; 
+            stand_dev += (i - numwords/size)^2;
+        }
+        stand_dev = (double) Math.sqrt(stand_dev/size);
+        System.out.println("number of words: " + Integer.toString(numwords));
+        System.out.println("min:" + Integer.toString(min));
+        System.out.println("max:" + Integer.toString(max));
+        System.out.println("average:" + Float.toString(numwords/size));
+        System.out.println("average dev:" + Double.toString(avdev/size));
+        System.out.println("standart dev:" + Double.toString(stand_dev));
     }
 }

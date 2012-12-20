@@ -4,20 +4,24 @@
  */
 package hashtable;
 
-public class TableElem 
+public class TableElem <T>
 {
     protected String key;
-    protected int value;
-    public TableElem (String k, int v) 
+    protected T data;
+    public TableElem (String key, T data) 
     {
-        key = k; value = v;
+        this.key=key; this.data=data;
     }
-    public String getStr() 
+    public String getKey() 
     {
         return key;
     }
-    public int getValue() 
+    public T getData() 
     {
-        return value;
+        return data;
     } 
+    public void setData(T d) 
+    {
+        data = d;
+    }
 }
