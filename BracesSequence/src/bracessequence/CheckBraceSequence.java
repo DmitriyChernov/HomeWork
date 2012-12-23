@@ -28,12 +28,16 @@ public class CheckBraceSequence
             }
             if (line.charAt(pos) == '<' && line.charAt(pos+1) != '/')
             {
+                while (line.charAt(pos) == ' ')
+                {
+                    pos++;
+                }
+                while (line.charAt(pos) != ' ')
+                {
+                    cxml = cxml + line.charAt(pos);
+                }
                 while (line.charAt(pos) != '>')
                 {
-                    if (Character.isLetterOrDigit(line.charAt(pos)))
-                    {
-                        xml = xml + line.charAt(pos);
-                    }
                     pos++;
                 }
                 stack.push(xml);
