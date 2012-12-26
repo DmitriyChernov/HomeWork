@@ -6,8 +6,11 @@
 package gui;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -17,15 +20,20 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JTextField;
 
-public class GUI extends JFrame implements FieldChanger
+abstract class MyField extends JTextField implements Observer 
+{
+    
+}
+
+public class GUI extends JFrame implements SendingListener
 {
     private JButton getRes = new JButton();
     private JComboBox unit = new JComboBox();
     private JLabel instruct = new JLabel();
     private JTextField temp = new JTextField();
-    private JTextField celTemp = new JTextField();
-    private JTextField kelTemp = new JTextField();
-    private JTextField farTemp = new JTextField();
+    private MyField celTemp;
+    private MyField kelTemp;
+    private MyField farTemp;
     private JMenuBar menu = new JMenuBar();
     private JMenu file = new JMenu();
     private JMenuItem exit = new JMenuItem();
@@ -34,19 +42,38 @@ public class GUI extends JFrame implements FieldChanger
     private JMenuItem about = new JMenuItem();
     private Controller controller;
     private About aboutframe = new About();
+    private Sending send = new Sending();
+    private SendFrame sf = new SendFrame();
+    private SetEmailFrame sef = new SetEmailFrame(this); 
+    
+    private void SendItemActionPerformed(ActionEvent evt) 
+    {
+        sef.setLocationRelativeTo(this);
+        sef.setVisible(true);
+    }
     
     private void ExitItemActionPerformed(ActionEvent evt) 
     {
         processWindowEvent(new WindowEvent(this,WindowEvent.WINDOW_CLOSING));
     }
     
-    private void getResActionPerformed(ActionEvent evt) 
+    private void KeyActionPerformed(KeyEvent evt) 
     {
-        if ("".equals(temp.getText()))
+        try 
         {
-            temp.setText("0");
-        }
-        controller.getResult();
+            Integer.parseInt(temp.getText());
+            controller.getResult((String)unit.getSelectedItem(), temp.getText());
+        } 
+        catch (Exception e)
+        {
+            temp.setText("Error");
+        }      
+    }  
+    
+    
+    private void BoxActionPerformed(ActionEvent evt) 
+    {
+        controller.getResult((String)unit.getSelectedItem(), temp.getText());    
     }  
     
     private void AboutItemActionPerformed(ActionEvent evt)
@@ -56,21 +83,61 @@ public class GUI extends JFrame implements FieldChanger
     
     private void initComponents() 
     {
-        controller = new Controller (unit, temp, this);
+        celTemp = new MyField() 
+        {
+
+            @Override
+            public void update(Observable o, Object o1) 
+            {    
+                setText(((FieldsPackage) o1).getCel());
+            }
+        };
+        kelTemp = new MyField() 
+        {
+
+            @Override
+            public void update(Observable o, Object o1) 
+            {
+                setText(((FieldsPackage) o1).getKel());
+            }
+        };
+        farTemp = new MyField() 
+        {
+
+            @Override
+            public void update(Observable o, Object o1) 
+            {
+                setText(((FieldsPackage) o1).getFar());
+            }
+        };
+        
+        controller = new Controller ();
+        controller.addObserver(celTemp);
+        controller.addObserver(kelTemp);
+        controller.addObserver(farTemp);
+        
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         this.setResizable(false);
         instruct.setText("Выберите единицу измерения и введите величину");
-        unit.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Celsius", "Kelvin", "Fahrenheit" }));
         
-        getRes.setText("Get result!");
-        getRes.addActionListener(new java.awt.event.ActionListener() 
+        unit.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Celsius", "Kelvin", "Fahrenheit" }));
+        unit.addActionListener(new java.awt.event.ActionListener() 
         {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) 
             {
-                getResActionPerformed(evt);
+                BoxActionPerformed(evt);
             }
         });
+        
+        temp.addKeyListener(new KeyAdapter() 
+        {
+            @Override
+            public void keyReleased(KeyEvent evt) 
+            {
+                KeyActionPerformed(evt);
+            }
+       });
         
         celTemp.setText(" ");
         celTemp.setEditable(false);
@@ -87,6 +154,16 @@ public class GUI extends JFrame implements FieldChanger
         file.setText("File");    
         file.add(sendMail);
         file.add(exit);
+        
+        sendMail.setText("Send results");
+        sendMail.addActionListener(new java.awt.event.ActionListener() 
+        {
+             @Override
+             public void actionPerformed(java.awt.event.ActionEvent evt) 
+             {
+                 SendItemActionPerformed(evt);
+             }
+         }); 
         
         exit.addActionListener(new java.awt.event.ActionListener() 
         {
@@ -134,7 +211,6 @@ public class GUI extends JFrame implements FieldChanger
                         .addComponent(celTemp, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(getRes)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(kelTemp, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -150,7 +226,6 @@ public class GUI extends JFrame implements FieldChanger
                     .addComponent(unit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(temp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(getRes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(celTemp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -174,10 +249,24 @@ public class GUI extends JFrame implements FieldChanger
     }
 
     @Override
-    public void changeFields(String cel, String kel, String far) 
+    public void sendingfinished(boolean success) 
     {
-        celTemp.setText(cel);
-        kelTemp.setText(kel);
-        farTemp.setText(far);
+        sendMail.setEnabled(true);
+        sf.setVisible(false);
+        String mes;
+        mes = success ? "Mail was sent successfully" : "Message wasn't sent";
+        ErrorFrame rf = new ErrorFrame(mes);
+        rf.setLocationRelativeTo(sf);
+        rf.setVisible(true);
+    }
+
+    @Override
+    public void sendingbegin(String addr) 
+    {
+        String mes = celTemp.getText() + "; " + kelTemp.getText() + "; " + farTemp.getText() + "F";
+        sendMail.setEnabled(false);
+        sf.setLocationRelativeTo(sf);
+        sf.setVisible(true);
+        send.sending(this, mes, addr);
     }
 }
