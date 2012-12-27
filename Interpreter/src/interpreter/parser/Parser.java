@@ -12,12 +12,11 @@ public class Parser
 {
 
     private Lexer lexer = new Lexer();
-    Lexem curlexem;
-
     
-    private Node expr() throws Exception
+    private Expression expr() throws Exception
     {
-        switch(curlexem.getType()){
+        switch(lexer.curlexem().getType())
+        {
             case LET: 
                 return let();
             case FUN: 
@@ -27,16 +26,16 @@ public class Parser
         }
     }
     
-    private Node funCall() throws Exception 
+    private Expression funCall() throws Exception 
     {
         lexer.nextlexem();
-        if (curlexem.getType() != LexemType.ID) 
+        if (lexer.curlexem().getType() != LexemType.ID) 
         {
             throw new Exception();
         }
-        String id = ((IDLexem) curlexem).getName();
+        String id = ((IDLexem) lexer.curlexem()).getName();
         lexer.nextlexem();
-        if (curlexem.getType() != LexemType.ARROW) 
+        if (lexer.curlexem().getType() != LexemType.ARROW) 
         {
             throw new Exception();
         }
@@ -44,22 +43,22 @@ public class Parser
         return new FunDef(id, (Expression) expr());
     }
 
-    private Node let() throws Exception 
+    private Expression let() throws Exception 
     {
         lexer.nextlexem();
-        if (curlexem.getType() != LexemType.ID) 
+        if (lexer.curlexem().getType() != LexemType.ID) 
         {
             throw new Exception();
         }
-        String id = ((IDLexem) curlexem).getName();
+        String id = ((IDLexem) lexer.curlexem()).getName();
         lexer.nextlexem();
-        if (curlexem.getType() != LexemType.ASSIGN) 
+        if (lexer.curlexem().getType() != LexemType.ASSIGN) 
         {
             throw new Exception();
         }
         lexer.nextlexem();
         Expression bound = (Expression) expr();
-        if (curlexem.getType() != LexemType.IN) 
+        if (lexer.curlexem().getType() != LexemType.IN) 
         {
             throw new Exception();
         }
@@ -68,10 +67,10 @@ public class Parser
         return new Let(id, bound, expr);
     }
 
-    private Node binOp() throws Exception 
+    private Expression binOp() throws Exception 
     {
-        Node left = term();
-        LexemType l = curlexem.getType();
+        Expression left = term();
+        LexemType l = lexer.curlexem().getType();
         if (l == LexemType.PLUS) 
         {
             lexer.nextlexem();
@@ -85,10 +84,10 @@ public class Parser
         return left;
     }
     
-    private Node term() throws Exception 
+    private Expression term() throws Exception 
     {
-        Node left = factor();
-        LexemType l = curlexem.getType();
+        Expression left = factor();
+        LexemType l = lexer.curlexem().getType();
         if (l == LexemType.MULT) 
         {
             lexer.nextlexem();
@@ -102,49 +101,60 @@ public class Parser
         return left;
     }
 
-    private Node factor() throws Exception
+    private Expression factor() throws Exception
     {
         return funcall();
     }
     
-    private Node funcall() throws Exception 
+    private Expression funcall() throws Exception 
     {
-        Node n = primary();
-        while(curlexem.getType() == LexemType.ID ||
-              curlexem.getType() == LexemType.OBR ||
-              curlexem.getType() == LexemType.NUMBER) 
+        Expression n = primary();
+        while(lexer.curlexem().getType() == LexemType.ID ||
+              lexer.curlexem().getType() == LexemType.OBR ||
+              lexer.curlexem().getType() == LexemType.NUMBER) 
         {
             n = new FunCall((Expression)n, (Expression)primary());
         }
         return n;
     }
     
-    private Node primary() throws Exception
+    private Expression primary() throws Exception
     {
-        switch(curlexem.getType())
+        switch(lexer.curlexem().getType())
         {
             case NUMBER: 
-                int val = ((NumberLexem)curlexem).getValue();
+                int val = ((NumberLexem)lexer.curlexem()).getValue();
                 lexer.nextlexem();
                 return new Number(val);
 
             case ID: 
-                String id = ((IDLexem)curlexem).getName();
+                String id = ((IDLexem)lexer.curlexem()).getName();
                 lexer.nextlexem();
                 return new Identifier(id);
             
             case OBR: 
                 lexer.nextlexem();
-                Node n = expr();
-                if(curlexem.getType() != LexemType.CBR)
+                Expression n = expr();
+                if(lexer.curlexem().getType() != LexemType.CBR)
                 {
                     throw new Exception();
                 }
                 lexer.nextlexem();
-                return n;
-                
+                return n; 
             default:
                 throw new Exception();
         }
+    }
+    
+    public Expression parse(String text) throws Exception 
+     {
+        lexer.doLexemArray(text);
+        Expression res = this.expr();
+        lexer.nextlexem();
+        if (lexer.curlexem().getType() != LexemType.EOL) 
+        {
+            throw new Exception();
+        }
+        return res;
     }
 }

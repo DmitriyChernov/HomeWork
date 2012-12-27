@@ -6,4 +6,12 @@ package interpreter.TreeNodes;
  * 271 group
  */
 
-public enum ExprType {BINOP, FUNCALL, FUNDEF, IDENTIFIER, LET, NUMBER}
+public enum ExprType 
+{
+    OP, 
+    FUNCALL, 
+    FUNDEF, 
+    IDENTIFIER, 
+    LET, 
+    NUMBER
+}

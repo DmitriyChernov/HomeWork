@@ -14,8 +14,8 @@ public class Lexem
         this.type = type;
     }
     
-    public LexemType getType() {
-        
+    public LexemType getType() 
+    {  
         return type;
     }
 }

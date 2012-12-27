@@ -5,4 +5,11 @@
 
 package interpreter.TreeNodes;
 
-public enum OpType {ADD, SUB, MULT, DIV, NOTHING}
+public enum OpType 
+{
+    ADD, 
+    SUB, 
+    MULT, 
+    DIV, 
+    NOTHING
+}

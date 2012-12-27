@@ -16,31 +16,37 @@ public class Op extends Expression
         this.left = left;
         this.right = right;
         this.op = op;
-        type = ExprType.BINOP; 
+        type = ExprType.OP; 
     }
     
-    public OpType getOp() {
+    public OpType getOp()
+    {
         return op;
     }
     
-    public Expression getLeft() {
+    public Expression getLeft() 
+    {
         return left;
     }
     
-    public Expression getRight() {
+    public Expression getRight() 
+    {
         return right;
     }
     
-    public void setRight(Expression r) {
+    public void setRight(Expression r) 
+    {
         right = r;
     }
     
-    public void setLeft(Expression l) {
+    public void setLeft(Expression l) 
+    {
         left = l;
     }
 
     @Override
-    public Object deepcopy() {
+    public Object deepcopy() 
+    {
         return new Op(op,(Expression)left.deepcopy(),(Expression)right.deepcopy());
     }
 }

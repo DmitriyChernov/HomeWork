@@ -1,10 +1,10 @@
 Expr -> fundef | let | binop
-fundef -> 'fun' + id + '->' + expr
-let -> 'let' + id + '=' + expr + 'in' + expr
-binop -> term + ('+'|'-' + term)*
-term -> factor + ('*'|'/' + factor)*
+fundef -> 'fun'  id  '->'  expr
+let -> 'let' id  '='  expr  'in'  expr
+binop -> term  (('+'|'-') term)*
+term -> factor  (('*'|'/') factor)*
 factor -> funcall
-funcall -> primary + (primary)*
+funcall -> primary (primary)*
 primary -> number | id | '(' expr ')'
-number -> digit + (digit)* 
-id  -> letter + (letter | digit)*
+number -> digit (digit)* 
+id  -> letter (letter | digit)*

@@ -11,9 +11,8 @@ public class Lexer
 {
     private int pos=0;
     private Lexem[] lexems;
-    private int lp=0;
     
-    public void parse(String line)
+    public void doLexemArray(String line)
     {
         ArrayList<Lexem> lexems = new ArrayList<>();
         int length = line.length();
@@ -102,33 +101,37 @@ public class Lexer
                         
                         switch (name) 
                         {
-                        case "let":
-                            lexems.add(new LetLexem());
-                            break;
-                        case "in":
-                            lexems.add(new INLexem());
-                            break;
-                        case "fun":
-                            lexems.add(new FunLexem());
-                            break;
-                        default:
-                            lexems.add(new IDLexem(name));
+                            case "let":
+                                lexems.add(new LetLexem());
+                                break;
+                            case "in":
+                                lexems.add(new INLexem());
+                                break;
+                            case "fun":
+                                lexems.add(new FunLexem());
+                                break;
+                            default:
+                                lexems.add(new IDLexem(name));
                         }
                     break;
                     }
             }
         }
+        lexems.add(new EOLLexem());
         this.lexems = lexems.toArray(new Lexem[0]);
         this.pos = 0;
     }
     
-    public Lexem nextlexem()
+    public void nextlexem()
     {
-        Lexem i = lexems[lp];
-        if(lp < pos )
+        if(pos < lexems.length - 1)
         {
-            lp++;
+            pos++;
         }
-        return i;
+    }
+    
+    public Lexem curlexem()
+    {
+        return lexems [pos];
     }
 }

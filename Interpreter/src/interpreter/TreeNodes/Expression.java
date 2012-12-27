@@ -5,7 +5,7 @@
 
 package interpreter.TreeNodes;
 
-public abstract class Expression extends Node 
+public abstract class Expression
 {
     protected ExprType type;
     
@@ -13,4 +13,6 @@ public abstract class Expression extends Node
     {
         return type;
     }
+    
+    abstract public Object deepcopy();
 }

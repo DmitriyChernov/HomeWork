@@ -26,4 +26,10 @@ public class Number extends Expression
     {
         return new Number(val);
     }
+    
+    @Override
+    public String toString() 
+    {
+        return Integer.toString(val);
+    }
 }
