@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\UnitTestProject1\bin\Release\UnitTestProject1.dll" total="5" errors="3" failures="1" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2014-05-26" time="02:02:47">
+  <environment nunit-version="2.6.3.13283" clr-version="2.0.50727.5420" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Program Files (x86)\NUnit 2.6.3\bin" machine-name="KONYASH-PC" user="konyash" user-domain="konyash-PC" />
+  <culture-info current-culture="ru-RU" current-uiculture="ru-RU" />
+  <test-suite type="Assembly" name="C:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\UnitTestProject1\bin\Release\UnitTestProject1.dll" executed="True" result="Failure" success="False" time="0.391" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="Hamilton" executed="True" result="Failure" success="False" time="0.354" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="Tests" executed="True" result="Failure" success="False" time="0.354" asserts="0">
+            <results>
+              <test-suite type="TestFixture" name="Tester" executed="True" result="Failure" success="False" time="0.348" asserts="0">
+                <results>
+                  <test-case name="Hamilton.Tests.Tester.test2" executed="True" result="Success" success="True" time="0.165" asserts="1" />
+                  <test-case name="Hamilton.Tests.Tester.test3" executed="True" result="Error" success="False" time="0.027" asserts="0">
+                    <failure>
+                      <message><![CDATA[System.Collections.Generic.KeyNotFoundException : Данный ключ отсутствует в словаре.]]></message>
+                      <stack-trace><![CDATA[в System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+в Hamilton.HamiltonianDefiner.checkDegree() в c:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\ConsoleApplication1\HamiltonianDefiner.cs:строка 133
+в Hamilton.HamiltonianDefiner.isHamiltonianGraph(List`1 path) в c:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\ConsoleApplication1\HamiltonianDefiner.cs:строка 39
+в Hamilton.Tests.Tester.test3() в c:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\UnitTestProject1\UnitTest1.cs:строка 94
+]]></stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case name="Hamilton.Tests.Tester.test4" executed="True" result="Error" success="False" time="0.024" asserts="0">
+                    <failure>
+                      <message><![CDATA[System.Collections.Generic.KeyNotFoundException : Данный ключ отсутствует в словаре.]]></message>
+                      <stack-trace><![CDATA[в System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+в Hamilton.HamiltonianDefiner.hamiltonUtil(List`1 path, Int32 startV, Int32 curV) в c:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\ConsoleApplication1\HamiltonianDefiner.cs:строка 63
+в Hamilton.HamiltonianDefiner.hamiltonUtil(List`1 path, Int32 startV, Int32 curV) в c:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\ConsoleApplication1\HamiltonianDefiner.cs:строка 70
+в Hamilton.HamiltonianDefiner.isHamiltonianGraph(List`1 path) в c:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\ConsoleApplication1\HamiltonianDefiner.cs:строка 44
+в Hamilton.Tests.Tester.test4() в c:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\UnitTestProject1\UnitTest1.cs:строка 128
+]]></stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case name="Hamilton.Tests.Tester.test5" executed="True" result="Error" success="False" time="0.004" asserts="0">
+                    <failure>
+                      <message><![CDATA[System.Collections.Generic.KeyNotFoundException : Данный ключ отсутствует в словаре.]]></message>
+                      <stack-trace><![CDATA[в System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+в Hamilton.HamiltonianDefiner.checkDegree() в c:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\ConsoleApplication1\HamiltonianDefiner.cs:строка 133
+в Hamilton.HamiltonianDefiner.isHamiltonianGraph(List`1 path) в c:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\ConsoleApplication1\HamiltonianDefiner.cs:строка 39
+в Hamilton.Tests.Tester.test5() в c:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\UnitTestProject1\UnitTest1.cs:строка 161
+]]></stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case name="Hamilton.Tests.Tester.test6" executed="True" result="Failure" success="False" time="0.014" asserts="1">
+                    <failure>
+                      <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                      <stack-trace><![CDATA[в Hamilton.Tests.Tester.test6() в c:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\UnitTestProject1\UnitTest1.cs:строка 181
+]]></stack-trace>
+                    </failure>
+                  </test-case>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

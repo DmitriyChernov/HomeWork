@@ -1,0 +1,17 @@
+C:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\UnitTestProject1\obj\Release\Tests.csprojResolveAssemblyReference.cache
+C:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\UnitTestProject1\bin\Release\UnitTestProject1.dll
+C:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\UnitTestProject1\bin\Release\UnitTestProject1.pdb
+C:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\UnitTestProject1\bin\Release\nunit.framework.dll
+C:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\UnitTestProject1\bin\Release\QuickGraph.dll
+C:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\UnitTestProject1\bin\Release\nunit.framework.xml
+C:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\UnitTestProject1\bin\Release\QuickGraph.xml
+C:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\UnitTestProject1\obj\Release\UnitTestProject1.dll
+C:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\UnitTestProject1\obj\Release\UnitTestProject1.pdb
+C:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\UnitTestProject1\bin\Release\QuickGraph.Data.dll
+C:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\UnitTestProject1\bin\Release\QuickGraph.Graphviz.dll
+C:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\UnitTestProject1\bin\Release\QuickGraph.Serialization.dll
+C:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\UnitTestProject1\bin\Release\QuickGraph.Data.xml
+C:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\UnitTestProject1\bin\Release\QuickGraph.Graphviz.xml
+C:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\UnitTestProject1\bin\Release\QuickGraph.Serialization.xml
+C:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\UnitTestProject1\bin\Release\Hamilton.exe
+C:\Users\konyash\Documents\Visual Studio 2012\Projects\ConsoleApplication1\UnitTestProject1\bin\Release\Hamilton.pdb
